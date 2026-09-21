@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>金庸群侠传3 加强版</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #000; height: 100%; overflow: hidden; }
+  #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #stage { width: 100%; height: 100%; }
+  #stage ruffle-player, #stage embed, #stage object { width: 100% !important; height: 100% !important; }
+  #hint {
+    position: fixed; left: 0; right: 0; bottom: 8px; text-align: center;
+    color: #aaa; font: 12px/1.5 system-ui, sans-serif; pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage"></div></div>
+<div id="hint">触摸 = 鼠标点击 · 加载中请稍候</div>
+
+<!-- Ruffle: Flash 模拟器(WASM),与怀旧游戏博物馆同款引擎 -->
+<script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle/ruffle.js"></script>
+<script>
+(function () {
+  window.RufflePlayer = window.RufflePlayer || {};
+  window.RufflePlayer.config = {
+    autoplay: "on",
+    unmuteOverlay: "hidden",
+    letterbox: "on",
+    scale: "showAll",
+    quality: "high",
+    wmode: "direct",
+    allowScriptAccess: false,
+    splashScreen: false,
+    contextMenu: "off",
+    openUrlMode: "deny",
+    logLevel: "warn"
+  };
+
+  function boot() {
+    try {
+      var ruffle = window.RufflePlayer.newest();
+      var player = ruffle.createPlayer();
+      player.id = "rufflePlayer";
+      document.getElementById("stage").appendChild(player);
+      player.ruffle().load("play.swf");
+    } catch (e) {
+      document.getElementById("hint").textContent = "初始化失败: " + e.message;
+    }
+  }
+
+  if (document.readyState === "complete") { boot(); }
+  else { window.addEventListener("load", boot); }
+})();
+</script>
+</body>
+</html>
