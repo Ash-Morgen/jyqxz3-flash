@@ -66,13 +66,25 @@
     }
   };
 
+  var FONT_URL = "./fonts/SourceHanSansSC-Regular.ttf";
+  /* 游戏(Flash)会按这些字体名请求文字,全部指向同一份中文字体 */
+  var FONT_NAMES = ["宋体", "SimSun", "新宋体", "NSimSun", "黑体", "SimHei",
+                    "微软雅黑", "Microsoft YaHei", "楷体", "KaiTi", "仿宋", "FangSong",
+                    "Source Han Sans SC", "sans", "serif", "monospace", "typewriter"];
+
   function boot() {
     try {
       var ruffle = window.RufflePlayer.newest();
       var player = ruffle.createPlayer();
       player.id = "rufflePlayer";
       document.getElementById("stage").appendChild(player);
-      player.ruffle().load("play.swf");
+      /* 关键:把中文字体"注册"给引擎,否则引擎找不到字体 → 文字全部丢失 */
+      player.ruffle().load({
+        url: "play.swf",
+        fontSources: FONT_NAMES.map(function (n) {
+          return { name: n, data: FONT_URL };
+        })
+      });
     } catch (e) {
       document.getElementById("hint").textContent = "初始化失败: " + e.message;
     }
