@@ -7,6 +7,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>金庸群侠传3 加强版</title>
 <style>
+  /* 中文字体:Flash 游戏内的对话文字依赖它(Ruffle 在浏览器里需要显式提供) */
+  @font-face {
+    font-family: "Source Han Sans SC";
+    src: url("./fonts/SourceHanSansSC-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
   html, body { margin: 0; padding: 0; background: #000; height: 100%; overflow: hidden; }
   #wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
   #stage { width: 100%; height: 100%; }
@@ -33,11 +41,19 @@
     scale: "showAll",
     quality: "high",
     wmode: "direct",
-    allowScriptAccess: false,
+    allowScriptAccess: true,
     splashScreen: false,
-    contextMenu: "off",
-    openUrlMode: "deny",
-    logLevel: "warn"
+    contextMenu: "on",
+    openUrlMode: "allow",
+    logLevel: "warn",
+    /* 中文显示的关键:把 Flash 的字体请求映射到页面里的中文字体 */
+    defaultFonts: {
+      sans: ["Source Han Sans SC"],
+      serif: ["Source Han Sans SC"],
+      monospace: ["Source Han Sans SC"],
+      cursive: ["Source Han Sans SC"],
+      fantasy: ["Source Han Sans SC"]
+    }
   };
 
   function boot() {
