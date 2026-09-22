@@ -58,17 +58,21 @@
     openUrlMode: "deny",
     logLevel: "warn",
     /* 关键:把中文字体文件交给引擎(数组=URL 列表),否则引擎找不到字体 → 文字全部丢失
-       除了源字体本身,还为游戏请求的中文名(宋体/黑体/微软雅黑/楷体)各准备了一份同名副本 */
+       这些是"真·同名字体"(游戏按名字请求:宋体/新宋体/楷体_GB2312/仿宋_GB2312/黑体/楷体/微软雅黑/Noto Sans),
+       已子集化(GB2312+ASCII)以控制体积 */
     fontSources: [
-      "./fonts/SourceHanSansSC-Regular.ttf",
-      "./fonts/SourceHanSansBold.ttf",
-      "./fonts/SimSunCJK.ttf",
-      "./fonts/SimSunBold.ttf",
-      "./fonts/KaiTiGB2312.ttf",
-      "./fonts/KaiTiGB2312Bold.ttf",
-      "./fonts/SimHeiCJK.ttf",
-      "./fonts/YaHeiCJK.ttf",
-      "./fonts/KaiTiCJK.ttf"
+      "./fonts/RealSimSun.ttf",
+      "./fonts/RealNSimSun.ttf",
+      "./fonts/GBKai.ttf",
+      "./fonts/GBKaiBold.ttf",
+      "./fonts/GBFang.ttf",
+      "./fonts/GBFangBold.ttf",
+      "./fonts/RealHei.ttf",
+      "./fonts/RealHeiBold.ttf",
+      "./fonts/RealKai.ttf",
+      "./fonts/RealYaHei.ttf",
+      "./fonts/NotoSans_Regular.ttf",
+      "./fonts/NotoSans_Bold.ttf"
     ],
     /* 中文显示:把 Flash 的默认字体请求都指向这份中文字体 */
     defaultFonts: {
