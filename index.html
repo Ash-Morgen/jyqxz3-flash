@@ -57,8 +57,19 @@
     contextMenu: "off",
     openUrlMode: "deny",
     logLevel: "warn",
-    /* 关键:把中文字体文件交给引擎(数组=URL 列表),否则引擎找不到字体 → 文字全部丢失 */
-    fontSources: ["./fonts/SourceHanSansSC-Regular.ttf"],
+    /* 关键:把中文字体文件交给引擎(数组=URL 列表),否则引擎找不到字体 → 文字全部丢失
+       除了源字体本身,还为游戏请求的中文名(宋体/黑体/微软雅黑/楷体)各准备了一份同名副本 */
+    fontSources: [
+      "./fonts/SourceHanSansSC-Regular.ttf",
+      "./fonts/SourceHanSansBold.ttf",
+      "./fonts/SimSunCJK.ttf",
+      "./fonts/SimSunBold.ttf",
+      "./fonts/KaiTiGB2312.ttf",
+      "./fonts/KaiTiGB2312Bold.ttf",
+      "./fonts/SimHeiCJK.ttf",
+      "./fonts/YaHeiCJK.ttf",
+      "./fonts/KaiTiCJK.ttf"
+    ],
     /* 中文显示:把 Flash 的默认字体请求都指向这份中文字体 */
     defaultFonts: {
       sans: ["Source Han Sans SC"],
