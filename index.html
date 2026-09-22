@@ -82,13 +82,13 @@
       "./fonts/Default_Typewriter.ttf",
       "./fonts/Default_TypewriterBold.ttf"
     ],
-    /* 中文显示:把 Flash 的默认字体请求都指向这份中文字体 */
+    /* 中文显示:引擎的默认字体位(_sans/_serif/_typewriter)必须指向"页面上真实存在的字体名" */
     defaultFonts: {
-      sans: ["Source Han Sans SC"],
-      serif: ["Source Han Sans SC"],
-      monospace: ["Source Han Sans SC"],
-      cursive: ["Source Han Sans SC"],
-      fantasy: ["Source Han Sans SC"]
+      sans: ["黑体", "宋体", "Noto Sans"],
+      serif: ["宋体", "楷体", "Noto Sans"],
+      monospace: ["Noto Sans", "宋体"],
+      cursive: ["楷体", "宋体"],
+      fantasy: ["黑体", "宋体"]
     }
   };
 
